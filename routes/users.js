@@ -10,7 +10,7 @@ var router = express.Router();
 
 router.get('/logIn', function(req, res) {    // display register route
   res.render('logIn', {                    // display register form view
-      title: 'nodeAuthDemo Register User'     // input data to view
+      title: 'Register User Log In'     // input data to view
   });
 });
 router.post('/logIn', function(req, res) {   // new user post route

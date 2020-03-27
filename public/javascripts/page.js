@@ -24,7 +24,6 @@ const getCities = function (ev) { //city
 };
 
 
-
 //callback function for the above AJaX
 const showContinents = function (e) {
     console.log(url);
