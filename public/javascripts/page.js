@@ -23,11 +23,7 @@ const getCities = function (ev) { //city
     req.getFile(`/cities`, showCities);
 };
 
-const getWeather = function (ev) { //weather app
-    let req = Object.create(Ajax);
-    req.init();
-    req.getFile("http://api.openweathermap.org/data/2.5/weather?q=" + `${ev.target.value}` + "&appid=d419428cf334656903ea18531851df12", showWeather);
-};
+
 
 //callback function for the above AJaX
 const showContinents = function (e) {
@@ -170,51 +166,7 @@ const showCities = function (e) {
     div.appendChild(sel);
     $("contdata").appendChild(div);
 };
-/*
-const showWeather = function (e) {
 
-     //here you put the ajax response onto your page DOM
-    
-    console.log(e.target.getResponseHeader("Content-Type"));
-    let obj = JSON.parse(e.target.responseText); 
-    let element = $("weatherdata");
-    while (element.firstChild) {
-        element.removeChild(element.firstChild);
-    }
-    let div = document.createElement("div");
-    let p = document.createElement("p");
-    let p2 = document.createElement("p");
-    let p3 = document.createElement("p");
-    let p4 = document.createElement("p");
-    let h3 = document.createElement('h3');
-    let txt = document.createTextNode('The weather');
-    h3.appendChild(txt);
-    div.appendChild(h3);
-
-    let name = document.createTextNode(`${obj.name}, ${obj.sys.country}`);
-        for (let i = 0; i < obj.weather.length; i++) { 
-            var des = document.createTextNode(`Weather: ${obj.weather[i].description}`);
-        };
-
-    var temp = document.createTextNode(`Temp: ${obj.main.temp}`);
-    var feels = document.createTextNode(`Feels like: ${obj.main.feels_like}`);
-
-    p.appendChild(name);
-    p2.appendChild(des);
-    p3.appendChild(temp);
-    p4.appendChild(feels);
-    div.appendChild(p);
-    div.appendChild(p2);
-    div.appendChild(p3);
-    div.appendChild(p4);
-
-    $("weather").appendChild(div);
-};
-
-const showStarter = function () {
-    $('gcont').addEventListener('click', getContinents);
-};
-*/
 
 if (url == "worldview") {
     window.addEventListener("load", getContinents);
