@@ -5,6 +5,41 @@ const modCountry = require("../models/handleCountries");
 const modCities = require("../models/handleCities"); 
 const modLang = require("../models/handleLanguages"); 
 const modGover = require("../models/handleGovernmentForms");
+const bcrypt = require('bcryptjs');                 // added for bcrypt hashing
+const sha256 = require('crypto-js/sha256');         // added for encryption and other hashes
+const sha512 = require('crypto-js/sha512');         // added for encryption and other hashes
+const md5 = require('crypto-js/md5');               // added for encryption and other hashes
+const sha1 = require('crypto-js/sha1');             // added for encryption and other hashes
+const sha3 = require('crypto-js/sha3');  // added for encryption and other hashes
+const bchash = async function (req, algo='bcrypt') {
+    let hash;
+    switch (algo) {
+        case 'md5':
+            hash = await String(md5(req.body.password));
+            break;
+        case 'sha1':
+            hash = await String(sha1(req.body.password));
+            break;
+        case 'sha3':
+            hash = await String(sha3(req.body.password));
+            break;
+        case 'sha256':
+            hash = await String(sha256(req.body.password));
+            break;
+        case 'sha512':
+            hash = await String(sha512(req.body.password));
+            break;
+        default:
+            hash = await bcrypt.hash(req.body.password, 10);
+            break;
+    }
+    let obj = {
+        algo: algo,
+        length: hash.length,
+        digest: hash
+    };
+    return obj;
+}
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -189,6 +224,8 @@ router.post('/goverments', async function(req, res, next) { // deletes country f
     });
 });
 // government slut
+
+
 
 
 
